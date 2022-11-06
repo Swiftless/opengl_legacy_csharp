@@ -5,6 +5,13 @@ VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1", "1. Window\1.csproj", "{FC4C528B-7D87-4732-8BF0-9117AC2CA39B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2", "2. Resize\2.csproj", "{19D1F57B-DDC1-4E00-A178-15F0AB3AAB73}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48D11E1C-F23D-4292-B284-34D307E71C15}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{FC4C528B-7D87-4732-8BF0-9117AC2CA39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC4C528B-7D87-4732-8BF0-9117AC2CA39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC4C528B-7D87-4732-8BF0-9117AC2CA39B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19D1F57B-DDC1-4E00-A178-15F0AB3AAB73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19D1F57B-DDC1-4E00-A178-15F0AB3AAB73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19D1F57B-DDC1-4E00-A178-15F0AB3AAB73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19D1F57B-DDC1-4E00-A178-15F0AB3AAB73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
