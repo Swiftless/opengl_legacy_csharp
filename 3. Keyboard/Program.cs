@@ -5,88 +5,87 @@ using Silk.NET.Windowing;
 
 using System.Numerics;
 
-namespace _3
+namespace _3;
+
+public class Program
 {
-    public class Program
+    private static IWindow window;
+    private static GL openGLApi;
+
+    private static void Main(string[] args)
     {
-        private static IWindow window;
-        private static GL openGLApi;
+        var windowOptions = WindowOptions.Default;
+        windowOptions.Position = new Vector2D<int>(100, 100);
+        windowOptions.Size = new Vector2D<int>(500, 500);
+        windowOptions.Title = "Your first OpenGL Window";
 
-        private static void Main(string[] args)
+        window = Window.Create(windowOptions);
+
+        window.Load += OnLoad;
+        window.Update += OnUpdate;
+        window.Render += OnRender;
+        window.Resize += OnResize;
+
+        window.Run();
+    }
+
+    private static void OnLoad()
+    {
+        openGLApi = GL.GetApi(window);
+
+        // Iterate over all keyboards and bind to key down event
+        IInputContext input = window.CreateInput();
+        for (int i = 0; i < input.Keyboards.Count; i++)
         {
-            var windowOptions = WindowOptions.Default;
-            windowOptions.Position = new Vector2D<int>(100, 100);
-            windowOptions.Size = new Vector2D<int>(500, 500);
-            windowOptions.Title = "Your first OpenGL Window";
+            input.Keyboards[i].KeyDown += OnKeyDown;
+        }
+    }
 
-            window = Window.Create(windowOptions);
+    private static void OnRender(double obj)
+    {
+        openGLApi.ClearColor(0.0f, 0.5f, 1.0f, 1.0f);
+        openGLApi.Clear(ClearBufferMask.ColorBufferBit);
 
-            window.Load += OnLoad;
-            window.Update += OnUpdate;
-            window.Render += OnRender;
-            window.Resize += OnResize;
+        openGLApi.LoadIdentity();
 
-            window.Run();
+        openGLApi.Flush();
+    }
+
+    private static void OnUpdate(double obj) { }
+
+    private static void OnResize(Vector2D<int> windowSize)
+    {
+        openGLApi.Viewport(0, 0, (uint)windowSize.X, (uint)windowSize.Y);
+        openGLApi.MatrixMode(GLEnum.Projection);
+
+        var projectionMatrix = Matrix4x4.CreatePerspectiveFieldOfView((float)((Math.PI / 180f) * 60f), windowSize.X / windowSize.Y, 0.1f, 100.0f);
+        openGLApi.LoadMatrix(new float[] {
+            projectionMatrix.M11, projectionMatrix.M12, projectionMatrix.M13, projectionMatrix.M14,
+            projectionMatrix.M21, projectionMatrix.M22, projectionMatrix.M23, projectionMatrix.M24,
+            projectionMatrix.M31, projectionMatrix.M32, projectionMatrix.M33, projectionMatrix.M34,
+            projectionMatrix.M41, projectionMatrix.M42, projectionMatrix.M43, projectionMatrix.M44
+        });
+
+        openGLApi.MatrixMode(GLEnum.Modelview);
+    }
+
+    private static void OnKeyDown(IKeyboard keyboard, Key key, int arg3)
+    {
+        if (key == Key.Escape)
+        {
+            window.Close();
         }
 
-        private static void OnLoad()
+        if (key == Key.W)
         {
-            openGLApi = GL.GetApi(window);
-
-            // Iterate over all keyboards and bind to key down event
-            IInputContext input = window.CreateInput();
-            for (int i = 0; i < input.Keyboards.Count; i++)
-            {
-                input.Keyboards[i].KeyDown += OnKeyDown;
-            }
+            window.Position = new Vector2D<int>(100, 50);
+            window.Size = new Vector2D<int>(500, 600);
         }
 
-        private static void OnRender(double obj)
+        if (key == Key.S)
         {
-            openGLApi.ClearColor(0.0f, 0.5f, 1.0f, 1.0f);
-            openGLApi.Clear(ClearBufferMask.ColorBufferBit);
-
-            openGLApi.LoadIdentity();
-
-            openGLApi.Flush();
-        }
-
-        private static void OnUpdate(double obj) { }
-
-        private static void OnResize(Vector2D<int> windowSize)
-        {
-            openGLApi.Viewport(0, 0, (uint)windowSize.X, (uint)windowSize.Y);
-            openGLApi.MatrixMode(GLEnum.Projection);
-
-            var projectionMatrix = Matrix4x4.CreatePerspectiveFieldOfView((float)((Math.PI / 180f) * 60f), windowSize.X / windowSize.Y, 0.1f, 100.0f);
-            openGLApi.LoadMatrix(new float[] {
-                projectionMatrix.M11, projectionMatrix.M12, projectionMatrix.M13, projectionMatrix.M14,
-                projectionMatrix.M21, projectionMatrix.M22, projectionMatrix.M23, projectionMatrix.M24,
-                projectionMatrix.M31, projectionMatrix.M32, projectionMatrix.M33, projectionMatrix.M34,
-                projectionMatrix.M41, projectionMatrix.M42, projectionMatrix.M43, projectionMatrix.M44
-            });
-
-            openGLApi.MatrixMode(GLEnum.Modelview);
-        }
-
-        private static void OnKeyDown(IKeyboard keyboard, Key key, int arg3)
-        {
-            if (key == Key.Escape)
-            {
-                window.Close();
-            }
-
-            if (key == Key.W)
-            {
-                window.Position = new Vector2D<int>(100, 50);
-                window.Size = new Vector2D<int>(500, 600);
-            }
-
-            if (key == Key.S)
-            {
-                window.Position = new Vector2D<int>(100, 100);
-                window.Size = new Vector2D<int>(500, 500);
-            }
+            window.Position = new Vector2D<int>(100, 100);
+            window.Size = new Vector2D<int>(500, 500);
         }
     }
 }
