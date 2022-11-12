@@ -6,8 +6,8 @@ namespace _1
 {
     public class Program
     {
-        private static IWindow? window;
-        private static GL? openGLApi;
+        private static IWindow window;
+        private static GL openGLApi;
 
         private static void Main(string[] args)
         {
@@ -32,12 +32,12 @@ namespace _1
 
         private static void OnRender(double obj)
         {
-            openGLApi?.ClearColor(0.0f, 0.5f, 1.0f, 1.0f);
-            openGLApi?.Clear(ClearBufferMask.ColorBufferBit);
+            openGLApi.ClearColor(0.0f, 0.5f, 1.0f, 1.0f);
+            openGLApi.Clear(ClearBufferMask.ColorBufferBit);
 
-            openGLApi?.LoadIdentity();
+            openGLApi.LoadIdentity();
 
-            openGLApi?.Flush();
+            openGLApi.Flush();
         }
 
         private static void OnUpdate(double obj) { }
