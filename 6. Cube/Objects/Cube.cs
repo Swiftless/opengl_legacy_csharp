@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace _6.Objects
+namespace _7.Objects
 {
     internal static class Cube
     {
@@ -19,6 +19,14 @@ namespace _6.Objects
                     new Vector3(1, -1, 1),
                     new Vector3(1, 1, 1),
                     new Vector3(-1, 1, 1)
+                }
+            },
+            {
+                "Left", new() {
+                    new Vector3(-1, -1, -1),
+                    new Vector3(-1, 1, -1),
+                    new Vector3(-1, 1, 1),
+                    new Vector3(-1, -1, 1)
                 }
             },
             {
@@ -55,6 +63,10 @@ namespace _6.Objects
             {
                 "Back",
                 new Vector3(0, 1, 0)
+            },
+            {
+                "Left",
+                new Vector3(0, 0, 1)
             },
             {
                 "Right",

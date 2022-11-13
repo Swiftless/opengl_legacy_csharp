@@ -22,6 +22,14 @@ namespace _7.Objects
                 }
             },
             {
+                "Left", new() {
+                    new Vector3(-1, -1, -1),
+                    new Vector3(-1, 1, -1),
+                    new Vector3(-1, 1, 1),
+                    new Vector3(-1, -1, 1)
+                }
+            },
+            {
                 "Right", new() {
                     new Vector3(1, -1, -1),
                     new Vector3(1, 1, -1),
@@ -55,6 +63,10 @@ namespace _7.Objects
             {
                 "Back",
                 new Vector3(0, 1, 0)
+            },
+            {
+                "Left",
+                new Vector3(0, 0, 1)
             },
             {
                 "Right",
