@@ -15,6 +15,7 @@ public class Program
     private static void Main(string[] args)
     {
         var windowOptions = WindowOptions.Default;
+        windowOptions.API = new GraphicsAPI(ContextAPI.OpenGL, ContextProfile.Compatability, ContextFlags.Default, new APIVersion(2, 1));
         windowOptions.Position = new Vector2D<int>(100, 100);
         windowOptions.Size = new Vector2D<int>(500, 500);
         windowOptions.Title = "Your first OpenGL Window";
@@ -39,6 +40,8 @@ public class Program
         {
             input.Keyboards[i].KeyDown += OnKeyDown;
         }
+
+        OnResize(window.Size);
     }
 
     private static void OnRender(double obj)
@@ -50,8 +53,8 @@ public class Program
 
         openGLApi.Translate(0.0f, 0.0f, -5.0f); // Push eveything 5 units back into the scene, otherwise we won't see the primitive  
 
-        openGLApi.Color3(1.0f, 0f, 0f);
         openGLApi.PointSize(20.0f);
+        openGLApi.Color3(1.0f, 1.0f, 1.0f);
 
         openGLApi.Begin(GLEnum.Quads); // Start drawing a quad primitive  
 
@@ -73,11 +76,12 @@ public class Program
         openGLApi.MatrixMode(GLEnum.Projection);
 
         var projectionMatrix = Matrix4x4.CreatePerspectiveFieldOfView((MathF.PI / 180f) * 60f, windowSize.X / (float)windowSize.Y, 0.1f, 100.0f);
+
         openGLApi.LoadMatrix(new float[] {
-            projectionMatrix.M11, projectionMatrix.M21, projectionMatrix.M31, projectionMatrix.M41,
-            projectionMatrix.M12, projectionMatrix.M22, projectionMatrix.M32, projectionMatrix.M42,
-            projectionMatrix.M13, projectionMatrix.M23, projectionMatrix.M33, projectionMatrix.M43,
-            projectionMatrix.M14, projectionMatrix.M24, projectionMatrix.M34, projectionMatrix.M44
+            projectionMatrix.M11, projectionMatrix.M12, projectionMatrix.M13, projectionMatrix.M14,
+            projectionMatrix.M21, projectionMatrix.M22, projectionMatrix.M23, projectionMatrix.M24,
+            projectionMatrix.M31, projectionMatrix.M32, projectionMatrix.M33, projectionMatrix.M34,
+            projectionMatrix.M41, projectionMatrix.M42, projectionMatrix.M43, projectionMatrix.M44
         });
 
         openGLApi.MatrixMode(GLEnum.Modelview);
