@@ -5,16 +5,18 @@ using Silk.NET.Windowing;
 
 using System.Numerics;
 
-namespace _12;
+namespace _13;
 
 public class Program
 {
     private static IWindow window;
     private static GL openGLApi;
 
-    private static float sceneRotationAngle = 0.0f;
-    private static float sceneTranslationY = 0.0f;
-    private static bool movingUp = true;
+    private static float sceneRotationAngle = 60.0f;
+
+    private static float lightPositionAngle = 0.0f;
+    private static float lightX = 0.0f;
+    private static float lightY = 0.0f;
 
     private static bool specularOn = false;
     private static bool diffuseOn = true;
@@ -68,10 +70,11 @@ public class Program
 
         openGLApi.LoadIdentity();
 
+        // Position around 0,0 instead of the offset and rotation applied to the cube
+        openGLApi.Light(GLEnum.Light0, GLEnum.Position, new float[] { lightX, lightY, 0f });
+
         openGLApi.Translate(0.0f, 0.0f, -5.0f); // Push eveything 5 units back into the scene, otherwise we won't see the primitive  
         openGLApi.Rotate(sceneRotationAngle, 1, 1, 0); // Rotate everything -60 degrees on the X and Y axis, to show off multiple sides of the sube
-
-        openGLApi.Scale(0.5f, 1.0f, 2.0f); // Make the shape half as wide, the same height and twice as deep  
 
         if (specularOn)
         {
@@ -120,30 +123,14 @@ public class Program
         openGLApi.Flush();
     }
 
-    private static void OnUpdate(double obj)
-    {
-        if (sceneRotationAngle > 360f)
-            sceneRotationAngle = 0f;
-        else
-            sceneRotationAngle += 0.5f;
+    private static void OnUpdate(double obj) {
+        if (lightPositionAngle > 360f)
+            lightPositionAngle = 0f;
+        
+        lightPositionAngle += 0.05f;
 
-        if (sceneTranslationY > 4f)
-        {
-            movingUp = false;
-            sceneTranslationY = 4f;
-        }
-        else if (sceneTranslationY < -4f)
-        {
-            movingUp = true;
-            sceneTranslationY = -4f;
-        }
-        else
-        {
-            if (movingUp)
-                sceneTranslationY += 0.05f;
-            else
-                sceneTranslationY -= 0.05f;
-        }
+        lightX = MathF.Cos(lightPositionAngle) * 10.0f;
+        lightY = MathF.Sin(lightPositionAngle) * 10.0f;
     }
 
     private static void OnResize(Vector2D<int> windowSize)
