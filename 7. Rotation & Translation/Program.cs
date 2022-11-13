@@ -11,7 +11,10 @@ public class Program
 {
     private static IWindow window;
     private static GL openGLApi;
+
     private static float sceneRotationAngle = 0.0f;
+    private static float sceneTranslationY = 0.0f;
+    private static bool movingUp = true;
 
     private static void Main(string[] args)
     {
@@ -53,8 +56,8 @@ public class Program
 
         openGLApi.LoadIdentity();
 
-        openGLApi.Translate(0.0f, 0.0f, -5.0f); // Push eveything 5 units back into the scene, otherwise we won't see the primitive  
-        openGLApi.Rotate(sceneRotationAngle > 360f ? sceneRotationAngle = 0 : sceneRotationAngle+=0.5f, 1, 1, 0); // Rotate everything -60 degrees on the X and Y axis, to show off multiple sides of the sube
+        openGLApi.Translate(0.0f, sceneTranslationY, -5.0f); // Push eveything 5 units back into the scene, otherwise we won't see the primitive  
+        openGLApi.Rotate(sceneRotationAngle, 1, 1, 0); // Rotate everything -60 degrees on the X and Y axis, to show off multiple sides of the sube
 
         openGLApi.Begin(GLEnum.Quads); // Start drawing a quad primitive  
 
@@ -74,7 +77,31 @@ public class Program
         openGLApi.Flush();
     }
 
-    private static void OnUpdate(double obj) { }
+    private static void OnUpdate(double obj)
+    {
+        if (sceneRotationAngle > 360f)
+            sceneRotationAngle = 0f;
+        else
+            sceneRotationAngle += 0.5f;
+
+        if (sceneTranslationY > 4f)
+        {
+            movingUp = false;
+            sceneTranslationY = 4f;
+        }
+        else if (sceneTranslationY < -4f)
+        {
+            movingUp = true;
+            sceneTranslationY = -4f;
+        }
+        else
+        {
+            if (movingUp)
+                sceneTranslationY += 0.05f;
+            else
+                sceneTranslationY -= 0.05f;
+        }
+    }
 
     private static void OnResize(Vector2D<int> windowSize)
     {
