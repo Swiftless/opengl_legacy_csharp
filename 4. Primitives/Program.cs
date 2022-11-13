@@ -53,9 +53,6 @@ public class Program
 
         openGLApi.Translate(0.0f, 0.0f, -5.0f); // Push eveything 5 units back into the scene, otherwise we won't see the primitive  
 
-        openGLApi.PointSize(20.0f);
-        openGLApi.Color3(1.0f, 1.0f, 1.0f);
-
         openGLApi.Begin(GLEnum.Quads); // Start drawing a quad primitive  
 
         openGLApi.Vertex3(-1.0f, -1.0f, 0.0f); // The bottom left corner  
