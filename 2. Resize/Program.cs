@@ -14,6 +14,7 @@ public class Program
     private static void Main(string[] args)
     {
         var windowOptions = WindowOptions.Default;
+        windowOptions.API = new GraphicsAPI(ContextAPI.OpenGL, new APIVersion(2, 1));
         windowOptions.Position = new Vector2D<int>(100, 100);
         windowOptions.Size = new Vector2D<int>(500, 500);
         windowOptions.Title = "Your first OpenGL Window";
@@ -31,6 +32,8 @@ public class Program
     private static void OnLoad()
     {
         openGLApi = GL.GetApi(window);
+
+        OnResize(window.Size);
     }
 
     private static void OnRender(double obj)
