@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace _7.Objects
+namespace _14.Objects
 {
     internal static class Cube
     {

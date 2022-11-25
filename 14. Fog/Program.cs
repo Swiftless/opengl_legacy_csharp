@@ -12,6 +12,9 @@ public class Program
     private static IWindow window;
     private static GL openGLApi;
 
+    private static float fogDensity = 0.4f; //set the density to 0.3 which is actually quite thick
+    private static Vector4 fogColour = new Vector4(0.5f, 0.5f, 0.5f, 1f); //set the fog colour
+
     private static void Main(string[] args)
     {
         var windowOptions = WindowOptions.Default;
@@ -47,6 +50,14 @@ public class Program
     private static void OnRender(double obj)
     {
         openGLApi.Enable(EnableCap.DepthTest);
+
+        openGLApi.Enable(EnableCap.Fog);
+        openGLApi.Fog(GLEnum.FogMode, (int)GLEnum.Exp2);
+        openGLApi.Fog(GLEnum.FogColor, new[] { fogColour.X, fogColour.Y, fogColour.Z, fogColour.W });
+        openGLApi.Fog(GLEnum.FogDensity, fogDensity);
+
+        openGLApi.Hint(GLEnum.FogHint, GLEnum.Nicest);
+
         openGLApi.ClearColor(0.0f, 0.5f, 1.0f, 1.0f);
         openGLApi.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
@@ -54,6 +65,8 @@ public class Program
 
         openGLApi.Translate(0.0f, 0.0f, -5.0f); // Push eveything 5 units back into the scene, otherwise we won't see the primitive  
         openGLApi.Rotate(-60f, 1, 1, 0); // Rotate everything -60 degrees on the X and Y axis, to show off multiple sides of the sube
+
+        openGLApi.Scale(2.0f, 2.0f, 2.0f);
 
         openGLApi.Begin(GLEnum.Quads); // Start drawing a quad primitive  
 
