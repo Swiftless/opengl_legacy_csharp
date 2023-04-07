@@ -74,7 +74,7 @@ public class Program
         openGLApi.Light(GLEnum.Light0, GLEnum.Position, new float[] { lightX, lightY, 0f });
 
         openGLApi.Translate(0.0f, 0.0f, -5.0f); // Push eveything 5 units back into the scene, otherwise we won't see the primitive  
-        openGLApi.Rotate(sceneRotationAngle, 1, 1, 0); // Rotate everything -60 degrees on the X and Y axis, to show off multiple sides of the sube
+        openGLApi.Rotate(sceneRotationAngle, 1, 1, 0); // Rotate everything -60 degrees on the X and Y axis, to show off multiple sides of the cube
 
         if (specularOn)
         {

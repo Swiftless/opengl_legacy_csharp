@@ -57,7 +57,7 @@ public class Program
         openGLApi.LoadIdentity();
 
         openGLApi.Translate(0.0f, sceneTranslationY, -5.0f); // Push eveything 5 units back into the scene, otherwise we won't see the primitive  
-        openGLApi.Rotate(sceneRotationAngle, 1, 1, 0); // Rotate everything -60 degrees on the X and Y axis, to show off multiple sides of the sube
+        openGLApi.Rotate(sceneRotationAngle, 1, 1, 0); // Rotate everything -60 degrees on the X and Y axis, to show off multiple sides of the cube
 
         openGLApi.Enable(EnableCap.Blend); // Enable the OpenGL Blending functionality  
         openGLApi.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha); // Set the blend mode to blend our current RGBA with what is already in the buffer  

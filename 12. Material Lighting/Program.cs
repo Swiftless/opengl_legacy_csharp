@@ -69,7 +69,7 @@ public class Program
         openGLApi.LoadIdentity();
 
         openGLApi.Translate(0.0f, 0.0f, -5.0f); // Push eveything 5 units back into the scene, otherwise we won't see the primitive  
-        openGLApi.Rotate(sceneRotationAngle, 1, 1, 0); // Rotate everything -60 degrees on the X and Y axis, to show off multiple sides of the sube
+        openGLApi.Rotate(sceneRotationAngle, 1, 1, 0); // Rotate everything -60 degrees on the X and Y axis, to show off multiple sides of the cube
 
         openGLApi.Scale(0.5f, 1.0f, 2.0f); // Make the shape half as wide, the same height and twice as deep  
 
