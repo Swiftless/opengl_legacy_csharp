@@ -38,6 +38,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "15", "15. Fog Types\15.cspr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "16", "16. Texturing\16.csproj", "{F7F20BFA-09FC-4DD2-8C63-CB145E62229D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "17", "17. Texture Coord Generation\17.csproj", "{424186AC-7CF0-47C4-959C-6C058645CE9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{F7F20BFA-09FC-4DD2-8C63-CB145E62229D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7F20BFA-09FC-4DD2-8C63-CB145E62229D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7F20BFA-09FC-4DD2-8C63-CB145E62229D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{424186AC-7CF0-47C4-959C-6C058645CE9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{424186AC-7CF0-47C4-959C-6C058645CE9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{424186AC-7CF0-47C4-959C-6C058645CE9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{424186AC-7CF0-47C4-959C-6C058645CE9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
